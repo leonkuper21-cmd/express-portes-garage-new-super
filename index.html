@@ -1,1 +1,180 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Express Portes de Garage — Montréal & Rive Sud</title>
+  <meta name="description" content="Installation et réparation de portes de garage — Montréal & Rive Sud. Estimation gratuite, intervention rapide. Express Portes de Garage." />
+  <style>
+    html, body { margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.5; color:#111; background:#fff; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid #eee; position:sticky; top:0; background:#fff; z-index:50; }
+    .brand { font-weight:700; letter-spacing:0.2px; }
+    .brand .accent { color:#0059ff; }
+    .lang-switch { display:flex; gap:8px; align-items:center; }
+    .lang-switch button { border:1px solid #ddd; background:#fff; padding:6px 10px; border-radius:6px; cursor:pointer; }
+    .lang-switch button.active { border-color:#0059ff; }
+    .container { max-width:1040px; margin:0 auto; padding:22px 18px 64px; }
+    .hero { display:grid; gap:10px; padding:18px 0 8px; }
+    .hero h1 { margin:0; font-size:clamp(26px, 4vw, 42px); }
+    .hero p.kicker { margin:0; font-weight:600; }
+    .cta { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .cta a { text-decoration:none; padding:10px 14px; border-radius:8px; border:1px solid #ddd; }
+    .cta .primary { border-color:#0059ff; }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid #eee; font-size:14px; margin-top:6px; }
+    h2 { margin-top:28px; font-size:clamp(20px, 3.2vw, 28px); }
+    ul.feature-list { list-style: none; padding-left:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:8px; }
+    ul.feature-list li { padding:10px 12px; border:1px solid #eee; border-radius:8px; }
+    section { margin-top:24px; }
+    footer { border-top:1px solid #eee; margin-top:34px; padding:14px 18px; font-size:14px; color:#444; background:#fafafa; }
+    .muted { color:#666; font-size:14px; }
+    .grid-2 { display:grid; grid-template-columns: 1fr; gap:16px; }
+    @media (min-width: 800px) {
+      .grid-2 { grid-template-columns: 1.15fr 0.85fr; }
+    }
+    .card { border:1px solid #eee; border-radius:10px; padding:14px; }
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body data-active-lang="fr">
+  <header>
+    <div class="brand">Express <span class="accent">Portes de Garage</span></div>
+    <nav class="lang-switch" aria-label="Language switcher">
+      <button id="btn-fr" class="active" aria-pressed="true">FR</button>
+      <button id="btn-en" aria-pressed="false">EN</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- French section -->
+    <section id="section-fr" lang="fr">
+      <div class="hero">
+        <p class="kicker">Réparation &amp; installation — Montréal &amp; <strong>Rive Sud</strong></p>
+        <h1>Service rapide pour votre porte de garage</h1>
+        <span class="pill">Estimation gratuite • Rendez‑vous le jour même (selon disponibilité)</span>
+        <div class="cta">
+          <a class="primary" href="tel:+15149916682">Appeler / Texto : 514‑991‑6682</a>
+          <a href="mailto:expressportegarage@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2>Nos Services</h2>
+          <ul class="feature-list">
+            <li>Installation, réparation et entretien complets</li>
+            <li>Ressorts (torsion), câbles, rails et roulettes</li>
+            <li>Ouvre‑portes (Chamberlain / LiftMaster)</li>
+            <li>Réglage de l’équilibrage &amp; vérifications de sécurité</li>
+            <li>Remplacement des panneaux, joints et coupe‑froid</li>
+          </ul>
+          <p class="muted"><strong>Service local</strong> à Montréal et sur la <strong>Rive Sud</strong>. Interventions rapides et propres.</p>
+        </section>
+
+        <section class="card">
+          <h2>Pourquoi nous?</h2>
+          <ul class="feature-list">
+            <li>Technicien expérimenté • Travail garanti</li>
+            <li>Pièces de qualité • Prix honnêtes</li>
+            <li>Options de réparation ou remplacement expliquées clairement</li>
+            <li>Facture &amp; reçu pour assurances / entreprises</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Zones desservies</h2>
+        <p>Montréal, <strong>Rive Sud</strong> (Brossard, Longueuil, Boucherville, Saint‑Hubert, La Prairie, Candiac, Chambly, Saint‑Jean‑sur‑Richelieu, Châteauguay et environs).</p>
+      </section>
+    </section>
+
+    <!-- English section -->
+    <section id="section-en" class="hidden" lang="en">
+      <div class="hero">
+        <p class="kicker">Repair &amp; Installation — Montreal &amp; <strong>South Shore</strong></p>
+        <h1>Fast, reliable garage door service</h1>
+        <span class="pill">Free estimate • Same‑day appointments (when available)</span>
+        <div class="cta">
+          <a class="primary" href="tel:+15149916682">Call / Text: 514‑991‑6682</a>
+          <a href="mailto:expressportegarage@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2>Services</h2>
+          <ul class="feature-list">
+            <li>Full installation, repair, and maintenance</li>
+            <li>Torsion springs, cables, tracks, and rollers</li>
+            <li>Garage door openers (Chamberlain / LiftMaster)</li>
+            <li>Balance tuning &amp; safety checks</li>
+            <li>Panel, weatherstripping, and seal replacement</li>
+          </ul>
+          <p class="muted"><strong>Local service</strong> in Montreal and the <strong>South Shore</strong>. Clean, fast work.</p>
+        </section>
+
+        <section class="card">
+          <h2>Why choose us?</h2>
+          <ul class="feature-list">
+            <li>Experienced technician • Work guaranteed</li>
+            <li>Quality parts • Honest pricing</li>
+            <li>Clear options for repair vs replacement</li>
+            <li>Invoice &amp; receipt for insurance / businesses</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Service Area</h2>
+        <p>Montreal &amp; the <strong>South Shore</strong> (Brossard, Longueuil, Boucherville, Saint‑Hubert, La Prairie, Candiac, Chambly, Saint‑Jean‑sur‑Richelieu, Châteauguay, and nearby).</p>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footers (separate per language) -->
+  <footer id="footer-fr" lang="fr">
+    <p>© 2025 Express Portes de Garage — Montréal &amp; Rive Sud • Tél./Texto : <a href="tel:+15149916682">514‑991‑6682</a></p>
+  </footer>
+  <footer id="footer-en" class="hidden" lang="en">
+    <p>© 2025 Express Garage Doors — Serving Montreal &amp; South Shore • Call/Text: <a href="tel:+15149916682">514‑991‑6682</a></p>
+  </footer>
+
+  <script>
+    (function(){
+      const btnFR = document.getElementById('btn-fr');
+      const btnEN = document.getElementById('btn-en');
+      const sectionFR = document.getElementById('section-fr');
+      const sectionEN = document.getElementById('section-en');
+      const footerFR = document.getElementById('footer-fr');
+      const footerEN = document.getElementById('footer-en');
+
+      function setLang(lang){
+        const isFR = lang === 'fr';
+        document.body.setAttribute('data-active-lang', lang);
+        sectionFR.classList.toggle('hidden', !isFR);
+        sectionEN.classList.toggle('hidden', isFR);
+        footerFR.classList.toggle('hidden', !isFR);
+        footerEN.classList.toggle('hidden', isFR);
+        btnFR.classList.toggle('active', isFR);
+        btnEN.classList.toggle('active', !isFR);
+        btnFR.setAttribute('aria-pressed', isFR ? 'true' : 'false');
+        btnEN.setAttribute('aria-pressed', !isFR ? 'true' : 'false');
+        // Update html lang attribute for accessibility/SEO
+        document.documentElement.setAttribute('lang', isFR ? 'fr' : 'en');
+        // Optional: persist last choice
+        try { localStorage.setItem('x_lang', lang); } catch(e){}
+      }
+
+      btnFR.addEventListener('click', function(){ setLang('fr'); });
+      btnEN.addEventListener('click', function(){ setLang('en'); });
+
+      // Load persisted language
+      try {
+        const saved = localStorage.getItem('x_lang');
+        if (saved === 'en' || saved === 'fr') setLang(saved);
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
+
