@@ -96,22 +96,30 @@
   </div>
 
   <!-- Герой -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="inline">
-        <span class="pill" data-i18n="region_fr">Montréal & Rive Sud</span>
-        <span class="pill" data-i18n="sameday_fr">Rendez-vous le jour même</span>
-        <span class="pill" data-i18n="warranty_fr">Travail propre & garanti</span>
-      </div>
-      <h1 data-i18n="headline_fr">Réparation & installation de portes de garage</h1>
-      <p data-i18n="sub_fr">Réponse rapide • Intervention rapide</p> <!-- Здесь заменил фразу на "Réponse rapide" -->
+  <header>
+  <div class="logo-container">
+    <img src="your-logo.png" alt="Express Portes de Garage Logo" style="max-height:40px; margin-right:10px;">
+    <span>Express Portes de Garage</span>
+  </div>
+  
+  <div class="lang-switch">
+    <button onclick="switchLang('fr')" class="active">FR</button>
+    <button onclick="switchLang('en')">EN</button>
+  </div>
+</header>
 
-      <div class="cta">
-        <a class="btn red" href="tel:+15149916682" data-i18n="call_fr">Appeler / Texto : 514-991-6682</a>
-        <a class="btn" href="#contact" data-i18n="email_fr">Écrire un email</a>
-      </div>
-    </div>
-  </header>
+<main>
+  <h1>Réparation & installation de portes de garage</h1>
+  <p>Réponse rapide • Intervention rapide</p>
+
+  <button class="call-btn" onclick="window.location.href='tel:5149916682'">
+    Appeler / Texto : 514-991-6682
+  </button>
+
+  <button class="email-btn" onclick="window.location.href='mailto:leonkuper21@gmail.com'">
+    Écrire un email
+  </button>
+</main>
 
   <main class="wrap">
     <!-- Сервисы -->
