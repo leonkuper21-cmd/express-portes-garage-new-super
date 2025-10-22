@@ -26,17 +26,17 @@
     }
     a{color:var(--blue);text-decoration:none}
     .topbar{
-      display:flex;align-items:center;justify-content:center; /* Выравниваем по центру */
+      display:flex;align-items:center;justify-content:center;
       padding:.75rem 1rem;border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:20
     }
     .brand{
       font-weight:800;letter-spacing:.2px;
-      font-size:1.25rem; /* Увеличил размер шрифта */
-      color: var(--blue); /* Цвет - твой синий */
+      font-size:1.25rem;
+      color: var(--blue);
     }
     .lang{
       display:inline-flex;gap:.25rem;border:1px solid var(--border);border-radius:999px;overflow:hidden;
-      background:#fff;position:absolute;right:1rem; /* Перенёс переключатель языков вправо */
+      background:#fff;position:absolute;right:1rem;
     }
     .lang button{
       border:0;background:#fff;padding:.4rem .75rem;cursor:pointer;font-weight:600
@@ -49,9 +49,6 @@
     .wrap{max-width:1024px;margin:0 auto;padding:0 1rem}
     .hero h1{font-size:2rem;margin:.25rem 0 .5rem}
     .hero p{margin:.25rem 0;font-size:1.05rem;opacity:.95}
-    .cta{
-      display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem
-    }
     .btn{
       display:inline-flex;align-items:center;gap:.5rem;
       border-radius:.6rem;border:2px solid #ffffff33;color:#fff;
@@ -67,244 +64,20 @@
     h2{margin:0 0 .75rem;font-size:1.35rem}
     ul{margin:.5rem 0 .25rem 1.1rem}
     .form{
-      background:#fff;border:1px solid var(--border);border-radius:.9rem;padding:1rem
+      background:#fff;border:1px solid var(--border);border-radius:.9rem;padding:1rem;margin-bottom:2rem;
     }
     label{display:block;margin:.6rem 0 .25rem;font-weight:600}
     input,select,textarea{
       width:100%;padding:.7rem .75rem;border:1px solid var(--border);border-radius:.6rem;background:#fff
     }
     textarea{min-height:120px;resize:vertical}
-    .form .btn{justify-content:center;width:100%;margin-top:.75rem}
+    .form .btn{justify-content:center;width:100%;margin-top:1rem}
     .footer{
       margin-top:2rem;border-top:1px solid var(--border);padding:1rem 0;color:#5b6678;font-size:.95rem
     }
-    .pill{
-      display:inline-block;background:#ffffff22;border:1px solid #ffffff55;border-radius:999px;
-      padding:.25rem .6rem;font-weight:600
-    }
-    .inline{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.35rem}
   </style>
 </head>
 <body>
-  <!-- Верхняя панель -->
   <div class="topbar">
     <div class="brand">Express Portes de Garage</div>
-    <div class="lang" aria-label="Language switcher">
-      <button id="btn-fr" class="active" type="button">FR</button>
-      <button id="btn-en" type="button">EN</button>
-    </div>
-  </div>
-
-  <!-- Герой -->
-  <header>
-  <div class="logo-container">
-    <img src="your-logo.png" alt="Express Portes de Garage Logo" style="max-height:40px; margin-right:10px;">
-    <span>Express Portes de Garage</span>
-  </div>
-  
-  <div class="lang-switch">
-    <button onclick="switchLang('fr')" class="active">FR</button>
-    <button onclick="switchLang('en')">EN</button>
-  </div>
-</header>
-
-<main>
-  <h1>Réparation & installation de portes de garage</h1>
-  <p>Réponse rapide • Intervention rapide</p>
-
-  <button class="call-btn" onclick="window.location.href='tel:5149916682'">
-    Appeler / Texto : 514-991-6682
-  </button>
-
-  <button class="email-btn" onclick="window.location.href='mailto:leonkuper21@gmail.com'">
-    Écrire un email
-  </button>
-</main>
-
-  <main class="wrap">
-    <!-- Сервисы -->
-    <section class="section grid" id="services">
-      <div class="card">
-        <h2 data-i18n="services_title_fr">Nos services</h2>
-        <ul>
-          <li data-i18n="svc1_fr">Installation, réparation et entretien complets</li>
-          <li data-i18n="svc2_fr">Ressorts (torsion), câbles, rails, roulettes</li>
-          <li data-i18n="svc3_fr">Ouvre-portes (Chamberlain / LiftMaster)</li>
-          <li data-i18n="svc4_fr">Réglage de l’équilibrage & vérifications de sécurité</li>
-          <li data-i18n="svc5_fr">Remplacement panneaux, coupe-froid & scellants</li>
-        </ul>
-        <p data-i18n="services_note_fr">Interventions rapides et soignées. Facture & reçu disponibles.</p>
-      </div>
-
-      <!-- Форма -->
-      <div class="form" id="contact">
-        <h2 data-i18n="form_title_fr">Demander une intervention</h2>
-        <form action="https://formsubmit.co/construction2177@yahoo.com" method="POST">
-          <!-- Служебные поля FormSubmit -->
-          <input type="hidden" name="_subject" value="Nouvelle demande — Express Portes de Garage">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_next" value="https://leonkuper21-cmd.github.io/express-portes-garage-new-super/merci.html">
-
-          <!-- Поля клиента -->
-          <label for="name" data-i18n="label_name_fr">Nom</label>
-          <input id="name" name="name" required autocomplete="name" />
-
-          <label for="phone" data-i18n="label_phone_fr">Téléphone</label>
-          <input id="phone" name="phone" required inputmode="tel" autocomplete="tel" />
-
-          <label for="email" data-i18n="label_email_fr">Email</label>
-          <input id="email" name="email" type="email" required autocomplete="email" />
-
-          <label for="city" data-i18n="label_city_fr">Ville / Secteur</label>
-          <input id="city" name="city" required />
-
-          <label for="type" data-i18n="label_type_fr">Type de demande</label>
-          <select id="type" name="type" required>
-            <option value="repair" data-i18n="opt_repair_fr">Réparation</option>
-            <option value="install" data-i18n="opt_install_fr">Installation</option>
-            <option value="estimate" data-i18n="opt_estimate_fr">Estimation</option>
-          </select>
-
-          <label for="link" data-i18n="label_link_fr">Lien vers photo / vidéo (optionnel)</label>
-          <input id="link" name="link" placeholder="Drive, YouTube, etc." />
-
-          <label for="msg" data-i18n="label_msg_fr">Message</label>
-          <textarea id="msg" name="message" required></textarea>
-
-          <!-- Автоответ клиенту -->
-          <input type="hidden" name="_autoresponse" value="Merci! Nous avons bien reçu votre demande et vous contacterons très bientôt.">
-
-          <button class="btn red" type="submit" data-i18n="btn_send_fr">Envoyer</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Английская версия -->
-    <section class="section grid" id="services-en" style="display:none">
-      <div class="card">
-        <h2 data-i18n="services_title_en">Our Services</h2>
-        <ul>
-          <li data-i18n="svc1_en">Full installation, repair & maintenance</li>
-          <li data-i18n="svc2_en">Torsion springs, cables, tracks, rollers</li>
-          <li data-i18n="svc3_en">Openers (Chamberlain / LiftMaster)</li>
-          <li data-i18n="svc4_en">Balance tuning & safety checks</li>
-          <li data-i18n="svc5_en">Panel, weather-seal & trim replacement</li>
-        </ul>
-        <p data-i18n="services_note_en">Fast and neat interventions. Invoice & receipt available.</p>
-      </div>
-
-      <div class="form">
-        <h2 data-i18n="form_title_en">Request a visit</h2>
-        <form action="https://formsubmit.co/construction2177@yahoo.com" method="POST">
-          <input type="hidden" name="_subject" value="New request — Express Garage Doors">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_next" value="https://leonkuper21-cmd.github.io/express-portes-garage-new-super/merci.html">
-
-          <label for="name_en" data-i18n="label_name_en">Name</label>
-          <input id="name_en" name="name" required autocomplete="name" />
-
-          <label for="phone_en" data-i18n="label_phone_en">Phone</label>
-          <input id="phone_en" name="phone" required inputmode="tel" autocomplete="tel" />
-
-          <label for="email_en" data-i18n="label_email_en">Email</label>
-          <input id="email_en" name="email" type="email" required autocomplete="email" />
-
-          <label for="city_en" data-i18n="label_city_en">City / Area</label>
-          <input id="city_en" name="city" required />
-
-          <label for="type_en" data-i18n="label_type_en">Request type</label>
-          <select id="type_en" name="type" required>
-            <option value="repair" data-i18n="opt_repair_en">Repair</option>
-            <option value="install" data-i18n="opt_install_en">Installation</option>
-            <option value="estimate" data-i18n="opt_estimate_en">Estimate</option>
-          </select>
-
-          <label for="link_en" data-i18n="label_link_en">Photo / video link (optional)</label>
-          <input id="link_en" name="link" placeholder="Drive, YouTube, etc." />
-
-          <label for="msg_en" data-i18n="label_msg_en">Message</label>
-          <textarea id="msg_en" name="message" required></textarea>
-
-          <input type="hidden" name="_autoresponse" value="Thanks! We received your request and will contact you shortly.">
-          <button class="btn red" type="submit" data-i18n="btn_send_en">Send</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Подвал -->
-    <footer class="footer">
-      <div class="grid">
-        <div>
-          <strong>Montréal & Rive Sud</strong><br>
-          <a href="tel:+15149916682">514-991-6682</a> •
-          <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a> •
-          <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-          <div style="margin-top:.4rem">© 2025 Express Portes de Garage</div>
-        </div>
-        <div>
-          <strong>Montreal & South Shore</strong><br>
-          <a href="tel:+15149916682">514-991-6682</a> •
-          <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a> •
-          <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-          <div style="margin-top:.4rem">© 2025 Express Garage Doors</div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    const hero = {
-      fr:{
-        region_fr:"Montréal & Rive Sud",
-        sameday_fr:"Rendez-vous le jour même",
-        warranty_fr:"Travail propre & garanti",
-        headline_fr:"Réparation & installation de portes de garage",
-        sub_fr:"Réponse rapide • Intervention rapide",
-        call_fr:"Appeler / Texto : 514-991-6682",
-        email_fr:"Écrire un email",
-      },
-      en:{
-        region_fr:"Montreal & South Shore",
-        sameday_fr:"Same-day appointments",
-        warranty_fr:"Clean, guaranteed work",
-        headline_fr:"Garage door repair & installation",
-        sub_fr:"Fast response • Quick service",
-        call_fr:"Call / Text: 514-991-6682",
-        email_fr:"Send an email",
-      }
-    };
-
-    // Переключение языков
-    const frBtn = document.getElementById('btn-fr');
-    const enBtn = document.getElementById('btn-en');
-    const frSection = document.getElementById('services');
-    const enSection = document.getElementById('services-en');
-
-    function setLang(lang){
-      frBtn.classList.toggle('active', lang==='fr');
-      enBtn.classList.toggle('active', lang==='en');
-      // Герой
-      Object.entries(hero[lang]).forEach(([k,v])=>{
-        const node = document.querySelector(`[data-i18n="${k}"]`);
-        if(node) node.textContent = v;
-      });
-      // Показ секций
-      frSection.style.display = (lang==='fr')?'grid':'none';
-      enSection.style.display = (lang==='en')?'grid':'none';
-      // Меняем lang у <html>
-      document.documentElement.lang = (lang==='fr')?'fr':'en';
-      // Скроллим к верху при переключении
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-
-    frBtn.addEventListener('click', ()=>setLang('fr'));
-    enBtn.addEventListener('click', ()=>setLang('en'));
-    // По умолчанию FR
-    setLang('fr');
-  </script>
-</body>
-</html>
+    <div class="lang" aria-label="Language
