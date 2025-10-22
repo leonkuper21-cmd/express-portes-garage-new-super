@@ -1,264 +1,297 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Express Portes de Garage — Montréal & Rive Sud</title>
-  <meta name="description" content="Installation et réparation de portes de garage — Montréal & Rive Sud. Estimation gratuite, intervention rapide." />
+  <meta name="description" content="Installation et réparation de portes de garage à Montréal & Rive Sud. Estimation gratuite, intervention le jour même.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --primary:#0d47a1; --accent:#d32f2f; --ink:#111; --muted:#5f6368;
-      --bg:#ffffff; --surface:#f7f8fc; --border:#e3e6ef; --ring: rgba(13,71,161,.25);
+      --blue:#0a4dbf;   /* твой синий */
+      --red:#c81d25;    /* твой красный */
+      --dark:#0d1321;
+      --light:#ffffff;
+      --muted:#f5f7fb;
+      --border:#e6eaf2;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.55;}
-    a{color:var(--primary);text-decoration:none}
-    a:hover{opacity:.9}
-    header{position:sticky;top:0;background:#fff;border-bottom:2px solid var(--primary);z-index:10}
-    .wrap{max-width:1080px;margin:0 auto;padding:16px 18px}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      color:#1b2430;
+      background:#fff;
+      line-height:1.55;
+    }
+    a{color:var(--blue);text-decoration:none}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.75rem 1rem;border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:20
+    }
     .brand{font-weight:800;letter-spacing:.2px}
-    .brand .blue{color:var(--primary)} .brand .red{color:var(--accent)}
-    .lang-switch{display:flex;gap:8px}
-    .lang-switch button{border:1px solid var(--border);background:#fff;padding:6px 12px;border-radius:999px;cursor:pointer}
-    .lang-switch button.active{border-color:var(--primary);box-shadow:0 0 0 3px var(--ring)}
-    .hero{padding:28px 0 8px}
-    .kicker{margin:0;color:var(--muted);font-weight:700;letter-spacing:.2px}
-    h1{margin:.25em 0 .1em;font-size:clamp(28px,4.4vw,46px)}
-    .sub{margin:0;color:var(--ink)}
-    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;border:1px solid var(--border);font-weight:600}
-    .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .btn.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
-    .grid{display:grid;grid-template-columns:1fr;gap:16px}
-    @media (min-width: 860px){ .grid{grid-template-columns:1.15fr .85fr} }
-    .card{border:1px solid var(--border);border-radius:14px;padding:16px;background:#fff}
-    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 12px;margin-top:8px;color:var(--muted);font-size:14px}
-    h2{margin:8px 0 12px;font-size:clamp(22px,3.6vw,30px)}
-    ul.clean{list-style:none;padding-left:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
-    ul.clean>li{padding:10px 12px;border:1px dashed var(--border);border-radius:10px;background:var(--surface)}
-    .muted{color:var(--muted)}
-    .hidden{display:none !important}
-    footer{border-top:2px solid var(--primary);background:#fff;margin-top:30px}
-    footer .wrap{display:flex;flex-direction:column;gap:10px}
-    .social{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-    .badge{display:inline-block;background:var(--surface);border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:13px}
-    /* FORM */
-    form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-    form .full{grid-column:1/-1}
-    input,textarea,select{width:100%;padding:12px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;font:inherit}
+    .lang{
+      display:inline-flex;gap:.25rem;border:1px solid var(--border);border-radius:999px;overflow:hidden;
+      background:#fff
+    }
+    .lang button{
+      border:0;background:#fff;padding:.4rem .75rem;cursor:pointer;font-weight:600
+    }
+    .lang button.active{background:var(--blue);color:#fff}
+    .hero{
+      background:linear-gradient(135deg,var(--blue),#1a67ff);
+      color:#fff;padding:3.5rem 1rem 2.25rem;border-bottom:.4rem solid var(--red)
+    }
+    .wrap{max-width:1024px;margin:0 auto;padding:0 1rem}
+    .hero h1{font-size:2rem;margin:.25rem 0 .5rem}
+    .hero p{margin:.25rem 0;font-size:1.05rem;opacity:.95}
+    .cta{
+      display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      border-radius:.6rem;border:2px solid #ffffff33;color:#fff;
+      padding:.7rem 1rem;font-weight:700;cursor:pointer
+    }
+    .btn.red{background:var(--red);border-color:var(--red)}
+    .section{padding:2rem 0}
+    .grid{display:grid;gap:1rem}
+    @media (min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .card{
+      background:var(--muted);border:1px solid var(--border);border-radius:.8rem;padding:1rem
+    }
+    h2{margin:0 0 .75rem;font-size:1.35rem}
+    ul{margin:.5rem 0 .25rem 1.1rem}
+    .form{
+      background:#fff;border:1px solid var(--border);border-radius:.9rem;padding:1rem
+    }
+    label{display:block;margin:.6rem 0 .25rem;font-weight:600}
+    input,select,textarea{
+      width:100%;padding:.7rem .75rem;border:1px solid var(--border);border-radius:.6rem;background:#fff
+    }
     textarea{min-height:120px;resize:vertical}
-    input:focus,textarea:focus,select:focus{outline:none;box-shadow:0 0 0 3px var(--ring);border-color:var(--primary)}
-    .form-actions{display:flex;gap:10px;align-items:center}
-    fieldset{border:1px dashed var(--border);border-radius:10px;padding:10px 12px}
-    legend{font-weight:600;color:var(--muted)}
-    .help{font-size:12px;color:var(--muted)}
+    .form .btn{justify-content:center;width:100%;margin-top:.75rem}
+    .footer{
+      margin-top:2rem;border-top:1px solid var(--border);padding:1rem 0;color:#5b6678;font-size:.95rem
+    }
+    .pill{
+      display:inline-block;background:#ffffff22;border:1px solid #ffffff55;border-radius:999px;
+      padding:.25rem .6rem;font-weight:600
+    }
+    .inline{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.35rem}
   </style>
 </head>
-<body data-active-lang="fr">
-  <header>
-    <div class="wrap row">
-      <div class="brand">Express <span class="blue">Portes</span> de <span class="red">Garage</span></div>
-      <nav class="lang-switch" aria-label="Language switcher">
-        <button id="btn-fr" class="active" aria-pressed="true">FR</button>
-        <button id="btn-en" aria-pressed="false">EN</button>
-      </nav>
+<body>
+  <!-- Top -->
+  <div class="topbar">
+    <div class="brand">Express Portes de Garage</div>
+    <div class="lang" aria-label="Language switcher">
+      <button id="btn-fr" class="active" type="button">FR</button>
+      <button id="btn-en" type="button">EN</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="inline">
+        <span class="pill" data-i18n="region_fr">Montréal & Rive Sud</span>
+        <span class="pill" data-i18n="sameday_fr">Rendez-vous le jour même</span>
+        <span class="pill" data-i18n="warranty_fr">Travail propre & garanti</span>
+      </div>
+      <h1 data-i18n="headline_fr">Réparation & installation de portes de garage</h1>
+      <p data-i18n="sub_fr">Estimation gratuite • Intervention rapide</p>
+
+      <div class="cta">
+        <a class="btn red" href="tel:+15149916682" data-i18n="call_fr">Appeler / Texto : 514-991-6682</a>
+        <a class="btn" href="#contact" data-i18n="email_fr">Écrire un email</a>
+      </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- FR -->
-    <section id="fr" lang="fr">
-      <div class="hero">
-        <p class="kicker">Réparation & installation — Montréal & <strong>Rive Sud</strong></p>
-        <h1>Service rapide, propre et garanti</h1>
-        <p class="sub">Estimation gratuite • Rendez-vous le jour même (selon disponibilité)</p>
-        <div class="cta">
-          <a class="btn primary" href="tel:+15149916682">📞 Appeler / Texto : 514‑991‑6682</a>
-          <a class="btn" href="mailto:construction2177@yahoo.com">✉️ Email</a>
-        </div>
-        <span class="pill">Local Montréal & Rive Sud</span>
+    <!-- Services -->
+    <section class="section grid" id="services">
+      <div class="card">
+        <h2 data-i18n="services_title_fr">Nos services</h2>
+        <ul>
+          <li data-i18n="svc1_fr">Installation, réparation et entretien complets</li>
+          <li data-i18n="svc2_fr">Ressorts (torsion), câbles, rails, roulettes</li>
+          <li data-i18n="svc3_fr">Ouvre-portes (Chamberlain / LiftMaster)</li>
+          <li data-i18n="svc4_fr">Réglage de l’équilibrage & vérifications de sécurité</li>
+          <li data-i18n="svc5_fr">Remplacement panneaux, coupe-froid & scellants</li>
+        </ul>
+        <p data-i18n="services_note_fr">Interventions rapides et soignées. Facture & reçu disponibles.</p>
       </div>
 
-      <div class="grid">
-        <section class="card">
-          <h2>Nos Services</h2>
-          <ul class="clean">
-            <li>Installation, réparation et entretien complets</li>
-            <li>Ressorts (torsion), câbles, rails, roulettes</li>
-            <li>Ouvre‑portes (Chamberlain / LiftMaster)</li>
-            <li>Réglage de l’équilibrage & vérifications de sécurité</li>
-            <li>Remplacement panneaux, coupe‑froid & scellants</li>
-          </ul>
-          <p class="muted">Interventions rapides et soignées. Facture & reçu disponibles.</p>
-        </section>
+      <!-- Form -->
+      <div class="form" id="contact">
+        <h2 data-i18n="form_title_fr">Demander une intervention</h2>
+        <form action="https://formsubmit.co/ACTION_EMAIL_HERE" method="POST">
+          <!-- Служебные поля FormSubmit -->
+          <input type="hidden" name="_subject" value="Nouvelle demande — Express Portes de Garage">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="text" name="_honey" style="display:none">
 
-        <section class="card" id="form-fr">
-          <h2>Demander une intervention</h2>
-          <!-- FormSubmit: sends directly to your email -->
-          <form id="req-form-fr" action="https://formsubmit.co/construction2177@yahoo.com" method="POST">
-            <!-- Hidden controls -->
-            <input type="hidden" name="_subject" value="Nouvelle demande (site) — FR">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="_autoresponse" value="Merci! Nous avons bien reçu votre demande et nous vous contacterons dès que possible.">
-            <div>
-              <label>Nom<br><input name="Nom" required placeholder="Votre nom"></label>
-            </div>
-            <div>
-              <label>Téléphone<br><input name="Téléphone" required placeholder="514‑…" pattern=".*"></label>
-            </div>
-            <div>
-              <label>Ville / Secteur<br><input name="Ville / Secteur" placeholder="ex.: Châteauguay, Brossard"></label>
-            </div>
+          <!-- Поля клиента -->
+          <label for="name" data-i18n="label_name_fr">Nom</label>
+          <input id="name" name="name" required autocomplete="name" />
 
-            <fieldset class="full">
-              <legend>Type de demande</legend>
-              <label><input type="checkbox" name="Type de demande" value="Réparation"> Réparation</label>
-              <label><input type="checkbox" name="Type de demande" value="Installation"> Installation</label>
-              <label><input type="checkbox" name="Type de demande" value="Estimation"> Estimation</label>
-            </fieldset>
+          <label for="phone" data-i18n="label_phone_fr">Téléphone</label>
+          <input id="phone" name="phone" required inputmode="tel" autocomplete="tel" />
 
-            <div class="full">
-              <label>Lien vers photo / vidéo (Drive, YouTube, etc.) <span class="help">(optionnel)</span><br>
-                <input type="url" name="Lien photo/vidéo" placeholder="https://drive.google.com/...">
-              </label>
-            </div>
+          <label for="email" data-i18n="label_email_fr">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
 
-            <div class="full">
-              <label>Message<br><textarea name="Message" placeholder="Décrivez le problème ou le service souhaité…"></textarea></label>
-            </div>
-            <div class="full form-actions">
-              <button type="submit" class="btn accent">➕ Добавь / Envoyer</button>
-              <span class="help">Envoi sécurisé par email</span>
-            </div>
-          </form>
-        </section>
+          <label for="city" data-i18n="label_city_fr">Ville / Secteur</label>
+          <input id="city" name="city" required />
+
+          <label for="type" data-i18n="label_type_fr">Type de demande</label>
+          <select id="type" name="type" required>
+            <option value="repair" data-i18n="opt_repair_fr">Réparation</option>
+            <option value="install" data-i18n="opt_install_fr">Installation</option>
+            <option value="estimate" data-i18n="opt_estimate_fr">Estimation</option>
+          </select>
+
+          <label for="link" data-i18n="label_link_fr">Lien vers photo / vidéo (optionnel)</label>
+          <input id="link" name="link" placeholder="Drive, YouTube, etc." />
+
+          <label for="msg" data-i18n="label_msg_fr">Message</label>
+          <textarea id="msg" name="message" required></textarea>
+
+          <!-- Автоответ клиенту -->
+          <input type="hidden" name="_autoresponse" value="Merci! Nous avons bien reçu votre demande et vous contacterons très bientôt.">
+
+          <button class="btn red" type="submit" data-i18n="btn_send_fr">Envoyer</button>
+        </form>
       </div>
     </section>
 
-    <!-- EN -->
-    <section id="en" class="hidden" lang="en">
-      <div class="hero">
-        <p class="kicker">Repair & Installation — Montreal & <strong>South Shore</strong></p>
-        <h1>Fast, clean, guaranteed work</h1>
-        <p class="sub">Free estimate • Same‑day appointments (when available)</p>
-        <div class="cta">
-          <a class="btn primary" href="tel:+15149916682">📞 Call / Text: 514‑991‑6682</a>
-          <a class="btn" href="mailto:construction2177@yahoo.com">✉️ Email</a>
-        </div>
-        <span class="pill">Local Montreal & South Shore</span>
+    <!-- Английская версия (те же блоки, тот же макет, текст переключается JS) -->
+    <section class="section grid" id="services-en" style="display:none">
+      <div class="card">
+        <h2 data-i18n="services_title_en">Our Services</h2>
+        <ul>
+          <li data-i18n="svc1_en">Full installation, repair & maintenance</li>
+          <li data-i18n="svc2_en">Torsion springs, cables, tracks, rollers</li>
+          <li data-i18n="svc3_en">Openers (Chamberlain / LiftMaster)</li>
+          <li data-i18n="svc4_en">Balance tuning & safety checks</li>
+          <li data-i18n="svc5_en">Panel, weather-seal & trim replacement</li>
+        </ul>
+        <p data-i18n="services_note_en">Fast, tidy work. Invoice & receipt available.</p>
       </div>
 
-      <div class="grid">
-        <section class="card">
-          <h2>Services</h2>
-          <ul class="clean">
-            <li>Full installation, repair and maintenance</li>
-            <li>Torsion springs, cables, tracks, rollers</li>
-            <li>Openers (Chamberlain / LiftMaster)</li>
-            <li>Balance tuning & safety checks</li>
-            <li>Panel, weather‑seal & trim replacement</li>
-          </ul>
-          <p class="muted">Fast, tidy work. Invoice & receipt available.</p>
-        </section>
+      <div class="form">
+        <h2 data-i18n="form_title_en">Request a visit</h2>
+        <form action="https://formsubmit.co/ACTION_EMAIL_HERE" method="POST">
+          <input type="hidden" name="_subject" value="New request — Express Garage Doors">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="text" name="_honey" style="display:none">
 
-        <section class="card" id="form-en">
-          <h2>Request a visit</h2>
-          <form id="req-form-en" action="https://formsubmit.co/construction2177@yahoo.com" method="POST">
-            <input type="hidden" name="_subject" value="New request (site) — EN">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="_autoresponse" value="Thanks! We received your request and will get back to you shortly.">
+          <label for="name_en" data-i18n="label_name_en">Name</label>
+          <input id="name_en" name="name" required autocomplete="name" />
 
-            <div>
-              <label>Name<br><input name="Name" required placeholder="Your name"></label>
-            </div>
-            <div>
-              <label>Phone<br><input name="Phone" required placeholder="514‑…"></label>
-            </div>
-            <div>
-              <label>City / Area<br><input name="City / Area" placeholder="e.g., Montreal, Brossard"></label>
-            </div>
+          <label for="phone_en" data-i18n="label_phone_en">Phone</label>
+          <input id="phone_en" name="phone" required inputmode="tel" autocomplete="tel" />
 
-            <fieldset class="full">
-              <legend>Request type</legend>
-              <label><input type="checkbox" name="Request type" value="Repair"> Repair</label>
-              <label><input type="checkbox" name="Request type" value="Installation"> Installation</label>
-              <label><input type="checkbox" name="Request type" value="Estimate"> Estimate</label>
-            </fieldset>
+          <label for="email_en" data-i18n="label_email_en">Email</label>
+          <input id="email_en" name="email" type="email" required autocomplete="email" />
 
-            <div class="full">
-              <label>Photo / video link (Drive, YouTube, etc.) <span class="help">(optional)</span><br>
-                <input type="url" name="Photo/Video link" placeholder="https://drive.google.com/...">
-              </label>
-            </div>
+          <label for="city_en" data-i18n="label_city_en">City / Area</label>
+          <input id="city_en" name="city" required />
 
-            <div class="full">
-              <label>Message<br><textarea name="Message" placeholder="Describe the issue or service you need…"></textarea></label>
-            </div>
-            <div class="full form-actions">
-              <button type="submit" class="btn accent">➕ Add / Send</button>
-              <span class="help">Secure email delivery</span>
-            </div>
-          </form>
-        </section>
+          <label for="type_en" data-i18n="label_type_en">Request type</label>
+          <select id="type_en" name="type" required>
+            <option value="repair" data-i18n="opt_repair_en">Repair</option>
+            <option value="install" data-i18n="opt_install_en">Installation</option>
+            <option value="estimate" data-i18n="opt_estimate_en">Estimate</option>
+          </select>
+
+          <label for="link_en" data-i18n="label_link_en">Photo / video link (optional)</label>
+          <input id="link_en" name="link" placeholder="Drive, YouTube, etc." />
+
+          <label for="msg_en" data-i18n="label_msg_en">Message</label>
+          <textarea id="msg_en" name="message" required></textarea>
+
+          <input type="hidden" name="_autoresponse" value="Thanks! We received your request and will contact you shortly.">
+          <button class="btn red" type="submit" data-i18n="btn_send_en">Send</button>
+        </form>
       </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="grid">
+        <div>
+          <strong>Montréal & Rive Sud</strong><br>
+          <a href="tel:+15149916682">514-991-6682</a> •
+          <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a> •
+          <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <div style="margin-top:.4rem">© 2025 Express Portes de Garage</div>
+        </div>
+        <div>
+          <strong>Montreal & South Shore</strong><br>
+          <a href="tel:+15149916682">514-991-6682</a> •
+          <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a> •
+          <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <div style="margin-top:.4rem">© 2025 Express Garage Doors</div>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <!-- FOOTERS -->
-  <footer id="footer-fr" lang="fr">
-    <div class="wrap">
-      <div class="social">
-        <span class="badge">Montréal & Rive Sud</span>
-        <a class="badge" href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a>
-        <a class="badge" href="https://www.facebook.com/share/19yMCLiT1Z/?mibextid=wwXIfr" target="_blank">Facebook</a>
-        <a class="badge" href="tel:+15149916682">514‑991‑6682</a>
-      </div>
-      <small class="muted">© 2025 Express Portes de Garage</small>
-    </div>
-  </footer>
-  <footer id="footer-en" class="hidden" lang="en">
-    <div class="wrap">
-      <div class="social">
-        <span class="badge">Montreal & South Shore</span>
-        <a class="badge" href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a>
-        <a class="badge" href="https://www.facebook.com/share/19yMCLiT1Z/?mibextid=wwXIfr" target="_blank">Facebook</a>
-        <a class="badge" href="tel:+15149916682">514‑991‑6682</a>
-      </div>
-      <small class="muted">© 2025 Express Garage Doors</small>
-    </div>
-  </footer>
-
   <script>
-    // Language toggle
-    const btnFR = document.getElementById('btn-fr');
-    const btnEN = document.getElementById('btn-en');
-    const secFR = document.getElementById('fr');
-    const secEN = document.getElementById('en');
-    const footFR = document.getElementById('footer-fr');
-    const footEN = document.getElementById('footer-en');
+    // Тексты для хедера/героя на двух языках
+    const hero = {
+      fr:{
+        region_fr:"Montréal & Rive Sud",
+        sameday_fr:"Rendez-vous le jour même",
+        warranty_fr:"Travail propre & garanti",
+        headline_fr:"Réparation & installation de portes de garage",
+        sub_fr:"Estimation gratuite • Intervention rapide",
+        call_fr:"Appeler / Texto : 514-991-6682",
+        email_fr:"Écrire un email",
+      },
+      en:{
+        region_fr:"Montreal & South Shore",
+        sameday_fr:"Same-day appointments",
+        warranty_fr:"Fast, clean, guaranteed",
+        headline_fr:"Garage door repair & installation",
+        sub_fr:"Free estimate • Fast response",
+        call_fr:"Call / Text: 514-991-6682",
+        email_fr:"Send an email",
+      }
+    };
+
+    // Переключение языков
+    const frBtn = document.getElementById('btn-fr');
+    const enBtn = document.getElementById('btn-en');
+    const frSection = document.getElementById('services');
+    const enSection = document.getElementById('services-en');
+
     function setLang(lang){
-      const isFR = lang==='fr';
-      secFR.classList.toggle('hidden', !isFR);
-      secEN.classList.toggle('hidden', isFR);
-      footFR.classList.toggle('hidden', !isFR);
-      footEN.classList.toggle('hidden', isFR);
-      btnFR.classList.toggle('active', isFR);
-      btnEN.classList.toggle('active', !isFR);
-      btnFR.setAttribute('aria-pressed', isFR?'true':'false');
-      btnEN.setAttribute('aria-pressed', !isFR?'true':'false');
-      document.documentElement.lang = isFR?'fr':'en';
-      try{ localStorage.setItem('x_lang', lang);}catch(e){}
+      frBtn.classList.toggle('active', lang==='fr');
+      enBtn.classList.toggle('active', lang==='en');
+      // Герой
+      Object.entries(hero[lang]).forEach(([k,v])=>{
+        const node = document.querySelector(`[data-i18n="${k}"]`);
+        if(node) node.textContent = v;
+      });
+      // Показ секций
+      frSection.style.display = (lang==='fr')?'grid':'none';
+      enSection.style.display = (lang==='en')?'grid':'none';
+      // Меняем lang у <html>
+      document.documentElement.lang = (lang==='fr')?'fr':'en';
+      // Скроллим к верху при переключении
+      window.scrollTo({top:0,behavior:'smooth'});
     }
-    btnFR.addEventListener('click', ()=>setLang('fr'));
-    btnEN.addEventListener('click', ()=>setLang('en'));
-    try{ const saved = localStorage.getItem('x_lang'); if(saved){ setLang(saved); } }catch(e){}
+
+    frBtn.addEventListener('click', ()=>setLang('fr'));
+    enBtn.addEventListener('click', ()=>setLang('en'));
+    // По умолчанию FR
+    setLang('fr');
   </script>
 </body>
 </html>
-
