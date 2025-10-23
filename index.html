@@ -1,83 +1,207 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Express Portes de Garage — Montréal & Rive Sud</title>
-  <meta name="description" content="Installation et réparation de portes de garage à Montréal & Rive Sud. Estimation gratuite, intervention le jour même.">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Installation et réparation de portes de garage à Montréal et Rive Sud. Bilingue FR/EN. Service rapide.">
   <style>
     :root{
-      --blue:#0a4dbf;
-      --red:#c81d25;
-      --dark:#0d1321;
-      --light:#ffffff;
-      --muted:#f5f7fb;
-      --border:#e6eaf2;
+      --blue:#0b5ed7;
+      --red:#c82828;
+      --dark:#24303f;
+      --text:#1f2a37;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --bg-alt:#f7f8fa;
+      --radius:14px;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
-      color:#1b2430;
-      background:#fff;
-      line-height:1.55;
-    }
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.45}
     a{color:var(--blue);text-decoration:none}
-    .topbar{
-      display:flex;align-items:center;justify-content:center;
-      padding:.75rem 1rem;border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:20
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:18px}
+    header{
+      position:sticky;top:0;background:#fffed; /* small trick to force layer */
+      background:#fff; border-bottom:1px solid #eef0f4; z-index:10;
     }
     .brand{
-      font-weight:800;letter-spacing:.2px;
-      font-size:1.25rem;
-      color: var(--blue);
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
     }
-    .lang{
-      display:inline-flex;gap:.25rem;border:1px solid var(--border);border-radius:999px;overflow:hidden;
-      background:#fff;position:absolute;right:1rem;
+    .logo-dot{width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:18px 0 0 var(--red)}
+    .site-title{
+      font-weight:800; color:var(--blue); letter-spacing:.2px;
+      font-size:clamp(18px,4.5vw,28px); line-height:1.1;
+      word-break:break-word; hyphens:auto;
     }
-    .lang button{
-      border:0;background:#fff;padding:.4rem .75rem;cursor:pointer;font-weight:600
+    .lang-toggle{
+      margin-left:auto; display:flex; border:1px solid #e2e8f0; border-radius:999px; overflow:hidden;
     }
-    .lang button.active{background:var(--blue);color:#fff}
+    .lang-toggle button{
+      border:0; padding:8px 14px; background:#fff; cursor:pointer; font-weight:700;
+      color:#64748b; min-width:56px;
+    }
+    .lang-toggle button.active{background:var(--blue); color:#fff}
     .hero{
-      background:linear-gradient(135deg,var(--blue),#1a67ff);
-      color:#fff;padding:3.5rem 1rem 2.25rem;border-bottom:.4rem solid var(--red)
+      background:linear-gradient(0deg, var(--bg-alt), #fff);
+      padding:18px 0 6px; border-bottom:1px solid #eef0f4;
     }
-    .wrap{max-width:1024px;margin:0 auto;padding:0 1rem}
-    .hero h1{font-size:2rem;margin:.25rem 0 .5rem}
-    .hero p{margin:.25rem 0;font-size:1.05rem;opacity:.95}
-    .btn{
-      display:inline-flex;align-items:center;gap:.5rem;
-      border-radius:.6rem;border:2px solid #ffffff33;color:#fff;
-      padding:.7rem 1rem;font-weight:700;cursor:pointer
-    }
-    .btn.red{background:var(--red);border-color:var(--red)}
-    .section{padding:2rem 0}
-    .grid{display:grid;gap:1rem}
-    @media (min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .grid-2{display:grid; grid-template-columns:1fr; gap:18px}
+    @media(min-width:860px){.grid-2{grid-template-columns:1.1fr .9fr}}
     .card{
-      background:var(--muted);border:1px solid var(--border);border-radius:.8rem;padding:1rem
+      background:#fff; border:1px solid #e8ecf3; border-radius:var(--radius); padding:18px;
+      box-shadow:0 1px 0 rgba(20,30,50,.03);
     }
-    h2{margin:0 0 .75rem;font-size:1.35rem}
-    ul{margin:.5rem 0 .25rem 1.1rem}
-    .form{
-      background:#fff;border:1px solid var(--border);border-radius:.9rem;padding:1rem;margin-bottom:2rem;
+    h2{margin:.2rem 0 1rem;font-size:clamp(18px,3.8vw,26px);color:var(--dark)}
+    .muted{color:var(--muted)}
+    /* form */
+    form{display:grid; gap:12px}
+    label{font-weight:700; font-size:14px}
+    input, textarea{
+      width:100%; border:1px solid #d6dbe6; border-radius:10px; padding:12px 14px; font-size:16px;
+      outline:none; background:#fff;
     }
-    label{display:block;margin:.6rem 0 .25rem;font-weight:600}
-    input,select,textarea{
-      width:100%;padding:.7rem .75rem;border:1px solid var(--border);border-radius:.6rem;background:#fff
+    input:focus, textarea:focus{border-color:var(--blue); box-shadow:0 0 0 3px rgba(11,94,215,.12)}
+    textarea{min-height:120px; resize:vertical}
+    .btn{
+      display:inline-flex; justify-content:center; align-items:center; gap:8px;
+      border:0; padding:14px 18px; border-radius:12px; font-weight:800; font-size:16px;
+      cursor:pointer; background:var(--red); color:#fff;
     }
-    textarea{min-height:120px;resize:vertical}
-    .form .btn{justify-content:center;width:100%;margin-top:1rem}
-    .footer{
-      margin-top:2rem;border-top:1px solid var(--border);padding:1rem 0;color:#5b6678;font-size:.95rem
-    }
+    .btn:disabled{opacity:.6; cursor:not-allowed}
+    .help{font-size:13px; color:#6b7280}
+    /* contacts */
+    .list{display:grid; gap:8px; padding:0; margin:0}
+    .list li{list-style:none}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:#f1f5f9; color:#475569; font-size:12px; font-weight:700}
+    footer{margin-top:24px; padding-top:16px; border-top:1px solid #eef0f4; color:#48556a; font-size:14px}
+    .copy{margin-top:8px}
+    /* language visibility */
+    .fr, .en { display:none }
+    .show-fr .fr{display:block}
+    .show-en .en{display:block}
+    /* extra spacing under the send button on mobile */
+    .mb-safe{margin-bottom:24px}
   </style>
 </head>
-<body>
-  <div class="topbar">
-    <div class="brand">Express Portes de Garage</div>
-    <div class="lang" aria-label="Language
+<body class="show-fr">
+  <header>
+    <div class="wrap" style="display:flex; align-items:center; gap:14px">
+      <div class="brand">
+        <div class="logo-dot" aria-hidden="true"></div>
+        <div class="site-title">Express Portes de Garage</div>
+      </div>
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <button id="btn-fr" class="active" aria-selected="true" role="tab">FR</button>
+        <button id="btn-en" aria-selected="false" role="tab">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap grid-2">
+      <!-- Left: Contact form -->
+      <div class="card">
+        <h2 class="fr">Demande de service</h2>
+        <h2 class="en">Service Request</h2>
+
+        <!-- IMPORTANT: put YOUR email in the action URL -->
+        <form action="https://formsubmit.co/construction2177@yahoo.com" method="POST" accept-charset="UTF-8">
+          <!-- FormSubmit controls -->
+          <input type="hidden" name="_subject" value="Nouveau message — Express Portes de Garage">
+          <input type="hidden" name="_template" value="table">
+          <!-- set to 'true' to disable captcha page -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- OPTIONAL: redirect after submit (create merci.html later or remove this line) -->
+          <input type="hidden" name="_next" value="https://leonkuper21-cmd.github.io/express-portes-garage-new-super/merci.html">
+          <!-- honeypot -->
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="fr"><label>Nom</label></div>
+          <div class="en"><label>Name</label></div>
+          <input type="text" name="name" autocomplete="name" required>
+
+          <div class="fr"><label>Téléphone</label></div>
+          <div class="en"><label>Phone</label></div>
+          <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+
+          <div class="fr"><label>Email</label></div>
+          <div class="en"><label>Email</label></div>
+          <!-- name MUST be 'email' so the reply-to works -->
+          <input type="email" name="email" autocomplete="email" required>
+
+          <div class="fr"><label>Adresse (ville/quartier)</label></div>
+          <div class="en"><label>Address (city/area)</label></div>
+          <input type="text" name="address" autocomplete="street-address">
+
+          <div class="fr"><label>Message</label></div>
+          <div class="en"><label>Message</label></div>
+          <textarea name="message" placeholder=""></textarea>
+
+          <button class="btn mb-safe fr" type="submit">Envoyer</button>
+          <button class="btn mb-safe en" type="submit">Send</button>
+
+          <div class="help fr">En cliquant “Envoyer”, vous acceptez d’être contacté par téléphone ou email.</div>
+          <div class="help en">By clicking “Send”, you agree to be contacted by phone or email.</div>
+        </form>
+      </div>
+
+      <!-- Right: Contacts -->
+      <div class="card">
+        <h2 class="fr">Contact</h2>
+        <h2 class="en">Contact</h2>
+
+        <div class="fr">
+          <div class="pill">Montréal &amp; Rive Sud</div>
+          <ul class="list">
+            <li><strong>Tél:</strong> <a href="tel:+15149916682">514-991-6682</a></li>
+            <li><strong>Email:</strong> <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a></li>
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+
+        <div class="en">
+          <div class="pill">Montreal &amp; South Shore</div>
+          <ul class="list">
+            <li><strong>Phone:</strong> <a href="tel:+15149916682">514-991-6682</a></li>
+            <li><strong>Email:</strong> <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a></li>
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+
+        <footer>
+          <div class="copy">© <span id="y"></span> Express Portes de Garage</div>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // language switch
+    const root = document.body;
+    const frBtn = document.getElementById('btn-fr');
+    const enBtn = document.getElementById('btn-en');
+
+    function toFR(){
+      root.classList.remove('show-en'); root.classList.add('show-fr');
+      frBtn.classList.add('active'); enBtn.classList.remove('active');
+      frBtn.setAttribute('aria-selected','true'); enBtn.setAttribute('aria-selected','false');
+      document.documentElement.lang = 'fr';
+    }
+    function toEN(){
+      root.classList.remove('show-fr'); root.classList.add('show-en');
+      enBtn.classList.add('active'); frBtn.classList.remove('active');
+      enBtn.setAttribute('aria-selected','true'); frBtn.setAttribute('aria-selected','false');
+      document.documentElement.lang = 'en';
+    }
+    frBtn.addEventListener('click', toFR);
+    enBtn.addEventListener('click', toEN);
+
+    // Default: show FR
+    toFR();
+  </script>
+</body>
+</html>
