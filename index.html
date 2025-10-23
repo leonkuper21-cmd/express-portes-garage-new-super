@@ -3,146 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Express Portes de Garage — Montréal & Rive Sud</title>
-  <meta name="description" content="Installation et réparation de portes de garage à Montréal & Rive Sud. Service rapide. FR/EN.">
+  <title>Express Portes de Garage</title>
   <style>
-    :root{
-      --blue:#0b5ed7; --red:#c82828; --dark:#24303f; --muted:#64748b; --ink:#1f2937;
-      --bg:#ffffff; --bg2:#f6f8fb; --radius:14px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.45}
-    a{color:var(--blue);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:16px}
-    header{border-bottom:3px solid var(--red);background:#fff;position:sticky;top:0;z-index:5}
-    .topbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .logo-dot{width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:18px 0 0 var(--red)}
-    .brand{font-weight:900;color:var(--blue);font-size:clamp(18px,4.2vw,28px)}
-    .lang{margin-left:auto;display:flex;border:1px solid #e2e8f0;border-radius:999px;overflow:hidden}
-    .lang button{padding:8px 14px;border:0;background:#fff;font-weight:800;color:#64748b;cursor:pointer}
-    .lang button.active{background:var(--blue);color:#fff}
-    .hero{background:linear-gradient(180deg,#fff, var(--bg2));border-bottom:1px solid #e9edf4}
-    .hero .grid{display:grid;grid-template-columns:1fr;gap:16px}
-    @media(min-width:860px){.hero .grid{grid-template-columns:1.05fr .95fr}}
-    .card{background:#fff;border:1px solid #e6ebf2;border-radius:var(--radius);padding:18px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
-    h2{margin:.2rem 0 1rem;color:var(--dark);font-size:clamp(18px,3.6vw,26px)}
-    .lead{color:#374151;margin:.25rem 0 .75rem}
-    .phone{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .callbtn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:10px 14px;border-radius:10px;font-weight:800}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef2f7;color:#475569;font-weight:800;font-size:12px}
-    /* form */
-    form{display:grid;gap:10px}
-    label{font-weight:700;font-size:14px}
-    input,textarea{width:100%;border:1px solid #d6dbe6;border-radius:10px;padding:11px 13px;font-size:16px;background:#fff;outline:none}
-    input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,94,215,.12)}
-    textarea{min-height:120px;resize:vertical}
-    .btn{display:inline-flex;justify-content:center;align-items:center;padding:13px 18px;border-radius:12px;background:var(--red);color:#fff;border:0;font-weight:900;cursor:pointer}
-    .help{font-size:12.5px;color:#6b7280}
+    body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#fff;color:#222;}
+    header{background:#fff;border-bottom:3px solid #c82828;text-align:center;padding:15px;}
+    h1{color:#0b5ed7;margin:0;font-size:26px;}
+    p.sub{color:#444;font-weight:500;}
+    .lang{margin-top:10px;}
+    button.langbtn{border:1px solid #ccc;padding:5px 10px;margin:0 4px;border-radius:8px;cursor:pointer;font-weight:bold;}
+    button.active{background:#0b5ed7;color:#fff;border-color:#0b5ed7;}
+    form{max-width:420px;margin:25px auto;padding:20px;border:1px solid #ddd;border-radius:10px;}
+    input,textarea{width:100%;margin:8px 0;padding:10px;border:1px solid #ccc;border-radius:6px;}
+    button.submit{background:#c82828;color:#fff;border:none;padding:12px 20px;border-radius:6px;font-weight:bold;cursor:pointer;}
+    button.submit:hover{background:#a51f1f;}
+    footer{text-align:center;padding:20px;font-size:14px;color:#555;border-top:1px solid #eee;margin-top:30px;}
+    a{color:#0b5ed7;text-decoration:none;}
     .fr,.en{display:none}
     .show-fr .fr{display:block}
     .show-en .en{display:block}
-    footer{margin:22px 0 0;padding:16px 0;border-top:1px solid #e9edf4;color:#4b5563;font-size:14px;text-align:center}
   </style>
 </head>
 <body class="show-fr">
-  <header>
-    <div class="wrap topbar">
-      <div class="logo-dot" aria-hidden="true"></div>
-      <div class="brand">Express Portes de Garage</div>
-      <div class="lang" role="tablist" aria-label="Language">
-        <button id="btn-fr" class="active" role="tab" aria-selected="true">FR</button>
-        <button id="btn-en" role="tab" aria-selected="false">EN</button>
-      </div>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div class="wrap grid">
-      <!-- LEFT: intro + form -->
-      <div class="card">
-        <!-- Intro with PHONE always visible -->
-        <div class="fr">
-          <h2>Installation & réparation · Service rapide</h2>
-          <p class="lead">Montréal & Rive Sud. Pièces, ajustements, ressorts, ouvre-portes, câbles, roulettes.</p>
-        </div>
-        <div class="en">
-          <h2>Installation & repair · Fast service</h2>
-          <p class="lead">Montreal & South Shore. Parts, adjustments, springs, openers, cables, rollers.</p>
-        </div>
+<header>
+  <h1>Express Portes de Garage</h1>
+  <div class="lang">
+    <button id="frbtn" class="langbtn active">FR</button>
+    <button id="enbtn" class="langbtn">EN</button>
+  </div>
+  <p class="sub fr">Installation et réparation — Service rapide Montréal & Rive Sud</p>
+  <p class="sub en">Garage door installation & repair — Fast service Montreal & South Shore</p>
+</header>
 
-        <div class="phone" style="margin:.25rem 0 1rem">
-          <strong>📞 <a href="tel:+15149916682">514-991-6682</a></strong>
-          <a class="callbtn" href="tel:+15149916682">Appeler maintenant / Call now</a>
-        </div>
+<form action="https://formsubmit.co/construction2177@yahoo.com" method="POST">
+  <input type="hidden" name="_subject" value="Message — Express Portes de Garage">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://leonkuper21-cmd.github.io/express-portes-garage-new-super/merci.html">
+  
+  <div class="fr">
+    <label>Nom</label>
+    <input type="text" name="name" required>
+    <label>Téléphone</label>
+    <input type="tel" name="phone" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Message</label>
+    <textarea name="message" rows="4"></textarea>
+    <button class="submit" type="submit">Envoyer</button>
+  </div>
 
-        <!-- FORM -->
-        <div class="fr"><h2>Demande de service</h2></div>
-        <div class="en"><h2>Service request</h2></div>
+  <div class="en">
+    <label>Name</label>
+    <input type="text" name="name" required>
+    <label>Phone</label>
+    <input type="tel" name="phone" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Message</label>
+    <textarea name="message" rows="4"></textarea>
+    <button class="submit" type="submit">Send</button>
+  </div>
+</form>
 
-        <form action="https://formsubmit.co/construction2177@yahoo.com" method="POST" accept-charset="UTF-8" autocomplete="on">
-          <!-- FormSubmit controls -->
-          <input type="hidden" name="_subject" value="Message — Express Portes de Garage">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://leonkuper21-cmd.github.io/express-portes-garage-new-super/merci.html">
-          <input type="text" name="_honey" style="display:none">
+<footer>
+  © <script>document.write(new Date().getFullYear())</script> Express Portes de Garage · 
+  <a href="tel:+15149916682">514-991-6682</a> · 
+  <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a>
+</footer>
 
-          <div class="fr"><label>Nom</label></div>
-          <div class="en"><label>Name</label></div>
-          <input type="text" name="name" autocomplete="name" required>
+<script>
+  const body=document.body;
+  const frbtn=document.getElementById('frbtn');
+  const enbtn=document.getElementById('enbtn');
 
-          <div class="fr"><label>Téléphone</label></div>
-          <div class="en"><label>Phone</label></div>
-          <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+  frbtn.onclick=()=>{body.classList.add('show-fr');body.classList.remove('show-en');frbtn.classList.add('active');enbtn.classList.remove('active');};
+  enbtn.onclick=()=>{body.classList.add('show-en');body.classList.remove('show-fr');enbtn.classList.add('active');frbtn.classList.remove('active');};
+</script>
 
-          <div class="fr"><label>Email</label></div>
-          <div class="en"><label>Email</label></div>
-          <input type="email" name="email" autocomplete="email" required>
-
-          <div class="fr"><label>Adresse (ville/quartier)</label></div>
-          <div class="en"><label>Address (city/area)</label></div>
-          <input type="text" name="address" autocomplete="street-address">
-
-          <div class="fr"><label>Message</label></div>
-          <div class="en"><label>Message</label></div>
-          <textarea name="message" placeholder=""></textarea>
-
-          <div class="fr"><button class="btn" type="submit">Envoyer</button></div>
-          <div class="en"><button class="btn" type="submit">Send</button></div>
-
-          <div class="help fr">En envoyant, vous acceptez d’être contacté par téléphone ou email.</div>
-          <div class="help en">By sending, you agree to be contacted by phone or email.</div>
-        </form>
-      </div>
-
-      <!-- RIGHT: contacts -->
-      <div class="card">
-        <div class="fr">
-          <h2>Contact</h2>
-          <div class="pill">Montréal & Rive Sud</div>
-          <p><strong>Tél:</strong> <a href="tel:+15149916682">514-991-6682</a><br>
-             <strong>Email:</strong> <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a></p>
-          <p><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></p>
-        </div>
-        <div class="en">
-          <h2>Contact</h2>
-          <div class="pill">Montreal & South Shore</div>
-          <p><strong>Phone:</strong> <a href="tel:+15149916682">514-991-6682</a><br>
-             <strong>Email:</strong> <a href="mailto:construction2177@yahoo.com">construction2177@yahoo.com</a></p>
-          <p><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></p>
-        </div>
-        <footer>© <span id="y"></span> Express Portes de Garage</footer>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const root=document.body, fr=document.getElementById('btn-fr'), en=document.getElementById('btn-en');
-    function toFR(){root.classList.add('show-fr');root.classList.remove('show-en');fr.classList.add('active');en.classList.remove('active');document.documentElement.lang='fr'}
-    function toEN(){root.classList.add('show-en');root.classList.remove('show-fr');en.classList.add('active');fr.classList.remove('active');document.documentElement.lang='en'}
-    fr.addEventListener('click',toFR); en.addEventListener('click',toEN); toFR();
-  </script>
 </body>
 </html>
