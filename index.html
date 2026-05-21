@@ -1,25 +1,62 @@
-// Garage section language switch
-const garageTitles = document.querySelectorAll('.garage-title');
+<!-- GARAGE DOORS -->
+<section id="garageDoors">
+  <h2 id="garageSectionTitle">🚪 Portes de garage</h2>
+  <p id="garageSectionDesc">
+    Découvrez nos styles modernes de portes de garage.
+  </p>
 
-garageTitles.forEach(elm => {
-  elm.textContent = elm.dataset[lang];
-});
+  <div class="garage-grid">
 
-const garageDescs = document.querySelectorAll('.garage-desc');
+    <div class="garage-card">
+      <img src="IMAGE_HERE" alt="Long Ranch Panels">
+      <h3 class="garage-title"
+          data-fr="Panneaux Long Ranch"
+          data-en="Long Ranch Panels">
+          Panneaux Long Ranch
+      </h3>
 
-garageDescs.forEach(elm => {
-  elm.textContent = elm.dataset[lang];
-});
+      <p>
+        <span class="garage-desc"
+              data-fr="Style moderne avec panneaux longs et apparence élégante."
+              data-en="Modern long-panel garage doors with contemporary design.">
+              Style moderne avec panneaux longs et apparence élégante.
+        </span>
+      </p>
+    </div>
 
-const sectionTitle = document.getElementById('garageSectionTitle');
-const sectionDesc = document.getElementById('garageSectionDesc');
+    <div class="garage-card">
+      <img src="IMAGE_HERE" alt="Carriage House Panels">
+      <h3 class="garage-title"
+          data-fr="Panneaux Carriage House"
+          data-en="Carriage House Panels">
+          Panneaux Carriage House
+      </h3>
 
-if(lang === 'fr'){
-  sectionTitle.textContent = '🚪 Portes de garage';
-  sectionDesc.textContent =
-    'Découvrez nos styles modernes de portes de garage.';
-}else{
-  sectionTitle.textContent = '🚪 Garage Doors';
-  sectionDesc.textContent =
-    'Browse our modern garage door styles.';
-}
+      <p>
+        <span class="garage-desc"
+              data-fr="Style traditionnel décoratif inspiré des portes classiques."
+              data-en="Traditional carriage style with decorative appearance.">
+              Style traditionnel décoratif inspiré des portes classiques.
+        </span>
+      </p>
+    </div>
+
+    <div class="garage-card">
+      <img src="IMAGE_HERE" alt="Flush Panels">
+      <h3 class="garage-title"
+          data-fr="Panneaux Flush"
+          data-en="Flush Panels">
+          Panneaux Flush
+      </h3>
+
+      <p>
+        <span class="garage-desc"
+              data-fr="Design lisse, moderne et minimaliste."
+              data-en="Minimalist flat-panel garage doors for modern homes.">
+              Design lisse, moderne et minimaliste.
+        </span>
+      </p>
+    </div>
+
+  </div>
+</section>
